@@ -14,23 +14,9 @@ add() {
 
 printf '['
 
-# winblows
-for plat in windows mingw; do
-    add windows-latest amd64 "$plat"
-    add windows-11-arm aarch64 "$plat"
-done
-
-# loonix
-add ubuntu-latest amd64 linux "ghcr.io/pkgforge-dev/archlinux:latest"
-add ubuntu-24.04-arm aarch64 linux "ghcr.io/pkgforge-dev/archlinux:latest"
-
-# android
-for arch in amd64 aarch64; do
-    add ubuntu-latest "$arch" android
-done
-
-# apple
-add macos-latest aarch64 macos
-add macos-latest aarch64 ios
+# Linux only: Ubuntu 24.04, so the packages need nothing newer than it ships (libva 2.20).
+# Other platforms keep using crueter-ci/FFmpeg.
+add ubuntu-latest amd64 linux "ubuntu:24.04"
+add ubuntu-24.04-arm aarch64 linux "ubuntu:24.04"
 
 echo ']'

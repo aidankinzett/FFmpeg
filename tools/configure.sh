@@ -138,9 +138,10 @@ flags() {
 		nvdec
 	fi
 
-	# VAAPI
+	# VAAPI, and dav1d for AV1
 	if linux; then
 		vaapi
+		on libdav1d decoder=libdav1d
 	fi
 
 	# DirectX
